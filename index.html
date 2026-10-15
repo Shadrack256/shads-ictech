@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SHADS-ICTECH | ICT Training, Software &amp; Web Development in Kampala</title>
+<meta name="description" content="SHADS-ICTECH provides practical ICT training, IT consultation, software installation and website development for students, schools and small businesses in Kampala, Uganda." />
+<meta name="theme-color" content="#0A1F44" />
+
+<style>
+/* ==========================================================
+   SHADS-ICTECH — Design System
+   Palette: Navy Blue / Yellow / Grey
+   ========================================================== */
+:root{
+  --navy:      #0A1F44;
+  --navy-2:    #12305E;
+  --navy-3:    #061530;
+  --navy-soft: #1B3A6B;
+
+  --yellow:    #FFC629;
+  --yellow-2:  #FFD75E;
+  --yellow-3:  #E0A800;
+
+  --grey-50:   #F7F8FA;
+  --grey-100:  #EFF1F5;
+  --grey-200:  #DDE1E9;
+  --grey-400:  #A8B0BF;
+  --grey-500:  #7A8497;
+  --grey-700:  #3E4859;
+
+  --white:     #FFFFFF;
+
+  --radius-sm: 8px;
+  --radius:    14px;
+  --radius-lg: 22px;
+
+  --shadow-sm: 0 2px 8px rgba(10,31,68,.06);
+  --shadow:    0 10px 30px rgba(10,31,68,.10);
+  --shadow-lg: 0 24px 60px rgba(10,31,68,.20);
+
+  --max: 1180px;
+  --nav-h: 74px;
+
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{ margin:0; padding:0; box-sizing:border-box; }
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top: calc(var(--nav-h) + 10px);
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  font-family:"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color:var(--navy);
+  background:var(--white);
+  line-height:1.7;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button,input,select,textarea{ font:inherit; color:inherit; }
+ul{ list-style:none; }
+
+/* ---------- Layout helpers ---------- */
+.wrap{ width:100%; max-width:var(--max); margin:0 auto; padding:0 22px; }
+.section{ padding:88px 0; }
+.section--tight{ padding:64px 0; }
+.section--grey{ background:var(--grey-50); }
+.section--navy{ background:var(--navy); color:var(--white); }
+
+.section-head{ max-width:720px; margin:0 auto 52px; text-align:center; }
+.section-head h2{
+  font-size:clamp(1.65rem, 3.6vw, 2.45rem);
+  line-height:1.22;
+  letter-spacing:-.02em;
+  font-weight:800;
+  margin-bottom:14px;
+}
+.section-head p{ color:var(--grey-500); font-size:1.03rem; }
+.section--navy .section-head p{ color:rgba(255,255,255,.72); }
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.74rem; font-weight:800;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--yellow-3);
+  background:rgba(255,198,41,.14);
+  border:1px solid rgba(255,198,41,.3);
+  padding:6px 14px; border-radius:999px;
+  margin-bottom:18px;
+}
+.section--navy .eyebrow{ color:var(--yellow); }
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  padding:14px 26px;
+  border-radius:999px;
+  font-weight:700; font-size:.94rem;
+  border:2px solid transparent;
+  cursor:pointer;
+  transition:transform .2s var(--ease), box-shadow .2s var(--ease),
+             background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+  white-space:nowrap;
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn:active{ transform:translateY(0); }
+
+.btn--primary{ background:var(--yellow); color:var(--navy); box-shadow:0 8px 22px rgba(255,198,41,.34); }
+.btn--primary:hover{ background:var(--yellow-2); box-shadow:0 12px 30px rgba(255,198,41,.45); }
+
+.btn--navy{ background:var(--navy); color:var(--white); box-shadow:var(--shadow-sm); }
+.btn--navy:hover{ background:var(--navy-2); box-shadow:var(--shadow); }
+
+.btn--ghost{ background:transparent; color:var(--white); border-color:rgba(255,255,255,.32); }
+.btn--ghost:hover{ border-color:var(--yellow); color:var(--yellow); }
+
+.btn--outline{ background:transparent; color:var(--navy); border-color:var(--grey-200); }
+.btn--outline:hover{ border-color:var(--navy); background:var(--navy); color:var(--white); }
+
+.btn--sm{ padding:10px 20px; font-size:.85rem; }
+.btn--block{ width:100%; }
+.btn svg{ width:17px; height:17px; flex:none; }
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+.site-header{
+  position:sticky; top:0; z-index:1000;
+  background:rgba(10,31,68,.96);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:box-shadow .3s var(--ease);
+}
+.site-header.scrolled{ box-shadow:0 6px 26px rgba(6,21,48,.4); }
+
+.nav{
+  max-width:var(--max); margin:0 auto;
+  padding:0 22px;
+  height:var(--nav-h);
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
+}
+
+.brand{ display:flex; align-items:center; gap:11px; }
+.brand-mark{
+  width:40px; height:40px; flex:none;
+  border-radius:11px;
+  background:linear-gradient(135deg, var(--yellow) 0%, var(--yellow-3) 100%);
+  color:var(--navy);
+  display:grid; place-items:center;
+  font-weight:900; font-size:1.18rem;
+  letter-spacing:-.04em;
+  box-shadow:0 6px 16px rgba(255,198,41,.32);
+}
+.brand-text{
+  font-weight:900; font-size:1.06rem; letter-spacing:-.02em;
+  color:var(--white); line-height:1.1;
+}
+.brand-text span{ color:var(--yellow); }
+.brand-sub{
+  display:block; font-size:.6rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--grey-400); margin-top:2px;
+}
+
+.nav-links{ display:flex; align-items:center; gap:4px; }
+.nav-links a{
+  color:rgba(255,255,255,.82);
+  font-size:.9rem; font-weight:600;
+  padding:9px 15px; border-radius:999px;
+  transition:color .2s var(--ease), background .2s var(--ease);
+}
+.nav-links a:hover{ color:var(--yellow); background:rgba(255,255,255,.07); }
+.nav-links a.active{ color:var(--navy); background:var(--yellow); }
+
+.nav-cta{ display:flex; align-items:center; gap:10px; }
+
+.burger{
+  display:none;
+  width:44px; height:44px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:11px;
+  cursor:pointer;
+  padding:0;
+  place-items:center;
+}
+.burger span{
+  display:block; width:19px; height:2px;
+  background:var(--white); border-radius:2px;
+  position:relative;
+  transition:background .2s var(--ease);
+}
+.burger span::before,
+.burger span::after{
+  content:""; position:absolute; left:0;
+  width:19px; height:2px; background:var(--white); border-radius:2px;
+  transition:transform .28s var(--ease), top .28s var(--ease);
+}
+.burger span::before{ top:-6px; }
+.burger span::after{ top:6px; }
+.burger.open span{ background:transparent; }
+.burger.open span::before{ top:0; transform:rotate(45deg); }
+.burger.open span::after{ top:0; transform:rotate(-45deg); }
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+.hero{
+  position:relative;
+  background:var(--navy);
+  color:var(--white);
+  padding:96px 0 92px;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(820px 420px at 88% -8%, rgba(255,198,41,.18), transparent 62%),
+    radial-gradient(680px 420px at -6% 108%, rgba(27,58,107,.85), transparent 60%);
+  pointer-events:none;
+}
+.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.038) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.038) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(circle at 50% 40%, #000 0%, transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 50% 40%, #000 0%, transparent 78%);
+  pointer-events:none;
+}
+.hero .wrap{ position:relative; z-index:2; }
+
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.08fr .92fr;
+  gap:56px; align-items:center;
+}
+
+.hero h1{
+  font-size:clamp(2rem, 5vw, 3.35rem);
+  line-height:1.12;
+  letter-spacing:-.03em;
+  font-weight:900;
+  margin-bottom:20px;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--yellow);
+  position:relative;
+}
+.hero h1 em::after{
+  content:"";
+  position:absolute; left:0; bottom:4px;
+  width:100%; height:9px;
+  background:rgba(255,198,41,.2);
+  border-radius:3px;
+  z-index:-1;
+}
+.hero p.lead{
+  font-size:1.07rem;
+  color:rgba(255,255,255,.78);
+  max-width:540px;
+  margin-bottom:32px;
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:13px; margin-bottom:38px; }
+
+.hero-trust{
+  display:flex; flex-wrap:wrap; gap:10px 26px;
+  padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.hero-trust li{
+  display:flex; align-items:center; gap:8px;
+  font-size:.85rem; font-weight:600;
+  color:rgba(255,255,255,.74);
+}
+.hero-trust svg{ width:16px; height:16px; color:var(--yellow); flex:none; }
+
+/* Hero card */
+.hero-card{
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:var(--radius-lg);
+  padding:30px;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:var(--shadow-lg);
+}
+.hero-card h3{
+  font-size:1.02rem; font-weight:800;
+  margin-bottom:6px; color:var(--white);
+}
+.hero-card > p{
+  font-size:.85rem; color:rgba(255,255,255,.6); margin-bottom:22px;
+}
+.service-mini{
+  display:flex; align-items:center; gap:14px;
+  padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.service-mini:last-child{ border-bottom:0; padding-bottom:0; }
+.service-mini .ico{
+  width:40px; height:40px; flex:none;
+  border-radius:11px;
+  background:rgba(255,198,41,.14);
+  border:1px solid rgba(255,198,41,.26);
+  display:grid; place-items:center;
+  color:var(--yellow);
+}
+.service-mini .ico svg{ width:19px; height:19px; }
+.service-mini strong{ display:block; font-size:.89rem; font-weight:700; color:var(--white); }
+.service-mini small{ font-size:.77rem; color:rgba(255,255,255,.55); }
+
+/* ==========================================================
+   LOGO / STATS STRIP
+   ========================================================== */
+.strip{
+  background:var(--yellow);
+  padding:0;
+}
+.strip-grid{
+  max-width:var(--max); margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr);
+}
+.strip-item{
+  padding:26px 20px;
+  text-align:center;
+  border-right:1px solid rgba(10,31,68,.12);
+}
+.strip-item:last-child{ border-right:0; }
+.strip-item strong{
+  display:block;
+  font-size:1.5rem; font-weight:900;
+  color:var(--navy); letter-spacing:-.03em; line-height:1.1;
+}
+.strip-item span{
+  font-size:.75rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.12em;
+  color:rgba(10,31,68,.66);
+}
+
+/* ==========================================================
+   SERVICES
+   ========================================================== */
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.card{
+  background:var(--white);
+  border:1px solid var(--grey-200);
+  border-radius:var(--radius-lg);
+  padding:32px 28px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .28s var(--ease), box-shadow .28s var(--ease), border-color .28s var(--ease);
+}
+.card::before{
+  content:"";
+  position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--yellow), var(--yellow-3));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .35s var(--ease);
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+  border-color:transparent;
+}
+.card:hover::before{ transform:scaleX(1); }
+
+.card .ico-lg{
+  width:56px; height:56px;
+  border-radius:16px;
+  background:var(--navy);
+  color:var(--yellow);
+  display:grid; place-items:center;
+  margin-bottom:20px;
+  transition:background .28s var(--ease), color .28s var(--ease), transform .28s var(--ease);
+}
+.card:hover .ico-lg{ background:var(--yellow); color:var(--navy); transform:rotate(-6deg) scale(1.05); }
+.card .ico-lg svg{ width:26px; height:26px; }
+
+.card h3{
+  font-size:1.1rem; font-weight:800;
+  margin-bottom:10px; letter-spacing:-.01em;
+}
+.card p{ font-size:.92rem; color:var(--grey-500); margin-bottom:16px; }
+
+.card ul li{
+  font-size:.87rem; color:var(--grey-700);
+  padding-left:22px; position:relative;
+  margin-bottom:7px;
+}
+.card ul li::before{
+  content:"";
+  position:absolute; left:0; top:9px;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--yellow);
+  box-shadow:0 0 0 3px rgba(255,198,41,.2);
+}
+
+/* ==========================================================
+   TRAINING / CURRICULUM
+   ========================================================== */
+.train-grid{
+  display:grid;
+  grid-template-columns: .95fr 1.05fr;
+  gap:56px; align-items:start;
+}
+
+.modules{ display:flex; flex-direction:column; gap:12px; }
+
+.module{
+  display:flex; gap:16px;
+  background:var(--white);
+  border:1px solid var(--grey-200);
+  border-left:4px solid var(--yellow);
+  border-radius:var(--radius);
+  padding:18px 20px;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), border-left-color .25s var(--ease);
+}
+.module:hover{
+  transform:translateX(5px);
+  box-shadow:var(--shadow);
+  border-left-color:var(--navy);
+}
+.module .num{
+  flex:none;
+  width:34px; height:34px;
+  border-radius:10px;
+  background:var(--grey-100);
+  color:var(--navy);
+  display:grid; place-items:center;
+  font-weight:900; font-size:.82rem;
+  transition:background .25s var(--ease), color .25s var(--ease);
+}
+.module:hover .num{ background:var(--navy); color:var(--yellow); }
+.module h4{ font-size:.96rem; font-weight:800; margin-bottom:3px; }
+.module p{ font-size:.85rem; color:var(--grey-500); line-height:1.55; }
+.module .sess{
+  display:inline-block;
+  font-size:.68rem; font-weight:800;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--yellow-3);
+  background:rgba(255,198,41,.13);
+  padding:2px 9px; border-radius:5px;
+  margin-top:8px;
+}
+
+/* Info panel */
+.panel{
+  background:var(--navy);
+  color:var(--white);
+  border-radius:var(--radius-lg);
+  padding:34px 30px;
+  box-shadow:var(--shadow-lg);
+  position:relative;
+  overflow:hidden;
+}
+.panel::after{
+  content:"";
+  position:absolute; right:-70px; bottom:-70px;
+  width:230px; height:230px; border-radius:50%;
+  background:radial-gradient(circle, rgba(255,198,41,.22), transparent 68%);
+}
+.panel h3{
+  font-size:1.2rem; font-weight:800; margin-bottom:8px;
+  position:relative; z-index:1;
+}
+.panel > p{
+  font-size:.9rem; color:rgba(255,255,255,.68);
+  margin-bottom:24px; position:relative; z-index:1;
+}
+.panel-list{ position:relative; z-index:1; }
+.panel-list li{
+  display:flex; justify-content:space-between; gap:16px;
+  padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.11);
+  font-size:.9rem;
+}
+.panel-list li:last-child{ border-bottom:0; }
+.panel-list span{ color:rgba(255,255,255,.7); }
+.panel-list strong{ color:var(--yellow); font-weight:800; white-space:nowrap; }
+
+/* ==========================================================
+   PRICING
+   ========================================================== */
+.price-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  align-items:stretch;
+}
+
+.price-card{
+  background:var(--white);
+  border:1px solid var(--grey-200);
+  border-radius:var(--radius-lg);
+  padding:34px 28px;
+  display:flex; flex-direction:column;
+  position:relative;
+  transition:transform .28s var(--ease), box-shadow .28s var(--ease);
+}
+.price-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+
+.price-card.featured{
+  background:var(--navy);
+  color:var(--white);
+  border-color:var(--navy);
+  box-shadow:var(--shadow-lg);
+  transform:scale(1.035);
+}
+.price-card.featured:hover{ transform:scale(1.035) translateY(-6px); }
+
+.badge{
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background:var(--yellow); color:var(--navy);
+  font-size:.68rem; font-weight:900;
+  letter-spacing:.12em; text-transform:uppercase;
+  padding:6px 16px; border-radius:999px;
+  white-space:nowrap;
+  box-shadow:0 6px 16px rgba(255,198,41,.4);
+}
+
+.price-card h3{ font-size:1rem; font-weight:800; margin-bottom:6px; }
+.price-card .desc{ font-size:.83rem; color:var(--grey-500); margin-bottom:22px; }
+.price-card.featured .desc{ color:rgba(255,255,255,.62); }
+
+.price{
+  font-size:2.05rem; font-weight:900;
+  letter-spacing:-.035em; line-height:1;
+  color:var(--navy);
+}
+.price-card.featured .price{ color:var(--yellow); }
+.price small{
+  display:block; font-size:.76rem; font-weight:600;
+  color:var(--grey-500); letter-spacing:0; margin-top:6px;
+}
+.price-card.featured .price small{ color:rgba(255,255,255,.55); }
+
+.price-feats{
+  margin:24px 0 28px;
+  padding-top:22px;
+  border-top:1px solid var(--grey-200);
+  flex:1;
+}
+.price-card.featured .price-feats{ border-top-color:rgba(255,255,255,.14); }
+
+.price-feats li{
+  display:flex; gap:11px; align-items:flex-start;
+  font-size:.87rem; margin-bottom:11px;
+  color:var(--grey-700);
+}
+.price-card.featured .price-feats li{ color:rgba(255,255,255,.82); }
+.price-feats svg{ width:16px; height:16px; flex:none; margin-top:4px; color:var(--yellow-3); }
+.price-card.featured .price-feats svg{ color:var(--yellow); }
+
+/* Add-ons table */
+.addons{
+  margin-top:52px;
+  background:var(--white);
+  border:1px solid var(--grey-200);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+.addons-head{
+  padding:22px 28px;
+  border-bottom:1px solid var(--grey-200);
+  background:var(--grey-50);
+}
+.addons-head h3{ font-size:1.02rem; font-weight:800; }
+.addons-head p{ font-size:.83rem; color:var(--grey-500); }
+.addons-list{ display:grid; grid-template-columns:repeat(2,1fr); }
+.addon{
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+  padding:17px 28px;
+  border-bottom:1px solid var(--grey-100);
+  font-size:.9rem;
+}
+.addons-list .addon:nth-child(odd){ border-right:1px solid var(--grey-100); }
+.addon:last-child, .addon:nth-last-child(2){ border-bottom:0; }
+.addon span{ color:var(--grey-700); }
+.addon strong{ color:var(--navy); font-weight:800; white-space:nowrap; }
+
+/* ==========================================================
+   ABOUT
+   ========================================================== */
+.about-grid{
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:56px; align-items:center;
+}
+.about-text h2{
+  font-size:clamp(1.6rem, 3.4vw, 2.25rem);
+  line-height:1.22; letter-spacing:-.02em;
+  font-weight:900; margin-bottom:18px;
+}
+.about-text p{ color:var(--grey-500); margin-bottom:16px; font-size:.98rem; }
+
+.value-list{ display:grid; gap:14px; margin-top:28px; }
+.value{
+  display:flex; gap:14px; align-items:flex-start;
+  background:var(--white);
+  border:1px solid var(--grey-200);
+  border-radius:var(--radius);
+  padding:16px 18px;
+  transition:box-shadow .25s var(--ease), transform .25s var(--ease);
+}
+.value:hover{ box-shadow:var(--shadow); transform:translateY(-3px); }
+.value .ico{
+  width:36px; height:36px; flex:none; border-radius:10px;
+  background:rgba(255,198,41,.16); color:var(--yellow-3);
+  display:grid; place-items:center;
+}
+.value .ico svg{ width:18px; height:18px; }
+.value strong{ display:block; font-size:.9rem; font-weight:800; margin-bottom:2px; }
+.value p{ font-size:.83rem; color:var(--grey-500); margin:0; }
+
+.about-visual{
+  background:var(--navy);
+  border-radius:var(--radius-lg);
+  padding:38px 32px;
+  color:var(--white);
+  box-shadow:var(--shadow-lg);
+  position:relative; overflow:hidden;
+}
+.about-visual::before{
+  content:"";
+  position:absolute; inset:0;
+  background:radial-gradient(560px 300px at 100% 0%, rgba(255,198,41,.16), transparent 60%);
+}
+.about-visual > *{ position:relative; z-index:1; }
+.about-visual h3{ font-size:1.12rem; font-weight:800; margin-bottom:22px; }
+
+.check-list li{
+  display:flex; gap:12px; align-items:flex-start;
+  font-size:.9rem; margin-bottom:14px;
+  color:rgba(255,255,255,.84);
+}
+.check-list svg{ width:18px; height:18px; flex:none; margin-top:4px; color:var(--yellow); }
+
+/* ==========================================================
+   CONTACT
+   ========================================================== */
+.contact-grid{
+  display:grid; grid-template-columns:.9fr 1.1fr;
+  gap:52px; align-items:start;
+}
+
+.contact-info h2{
+  font-size:clamp(1.6rem,3.4vw,2.2rem);
+  line-height:1.22; letter-spacing:-.02em;
+  font-weight:900; margin-bottom:16px;
+  color:var(--white);
+}
+.contact-info > p{
+  color:rgba(255,255,255,.68); margin-bottom:32px; font-size:.96rem;
+}
+.contact-items{ display:flex; flex-direction:column; gap:14px; }
+.contact-item{
+  display:flex; gap:15px; align-items:center;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);
+  padding:16px 18px;
+  transition:background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.contact-item:hover{
+  background:rgba(255,255,255,.1);
+  border-color:rgba(255,198,41,.4);
+  transform:translateX(4px);
+}
+.contact-item .ico{
+  width:42px; height:42px; flex:none;
+  border-radius:12px;
+  background:rgba(255,198,41,.15);
+  color:var(--yellow);
+  display:grid; place-items:center;
+}
+.contact-item .ico svg{ width:19px; height:19px; }
+.contact-item small{
+  display:block; font-size:.72rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(255,255,255,.5); margin-bottom:2px;
+}
+.contact-item strong{ font-size:.92rem; font-weight:700; color:var(--white); }
+
+/* Form */
+.form-card{
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  padding:36px 32px;
+  box-shadow:var(--shadow-lg);
+}
+.form-card h3{ font-size:1.15rem; font-weight:800; margin-bottom:6px; }
+.form-card > p{ font-size:.86rem; color:var(--grey-500); margin-bottom:26px; }
+
+.field{ margin-bottom:17px; }
+.field label{
+  display:block; font-size:.8rem; font-weight:800;
+  letter-spacing:.03em; margin-bottom:7px;
+  color:var(--navy);
+}
+.field label .req{ color:#D64545; }
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:13px 15px;
+  border:1.5px solid var(--grey-200);
+  border-radius:var(--radius-sm);
+  background:var(--grey-50);
+  font-size:.92rem;
+  transition:border-color .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
+  outline:none;
+}
+.field textarea{ resize:vertical; min-height:118px; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--navy);
+  background:var(--white);
+  box-shadow:0 0 0 4px rgba(10,31,68,.09);
+}
+.field input::placeholder,
+.field textarea::placeholder{ color:var(--grey-400); }
+
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+/* honeypot */
+.hp{ position:absolute; left:-9999px; opacity:0; pointer-events:none; }
+
+.form-note{
+  font-size:.76rem; color:var(--grey-500);
+  margin-top:14px; line-height:1.5;
+}
+
+.alert{
+  display:none;
+  align-items:flex-start; gap:11px;
+  padding:14px 16px;
+  border-radius:var(--radius-sm);
+  font-size:.87rem; font-weight:600;
+  margin-bottom:20px;
+  line-height:1.5;
+}
+.alert.show{ display:flex; }
+.alert svg{ width:18px; height:18px; flex:none; margin-top:2px; }
+.alert--ok{ background:#E8F6EE; color:#1B6B3A; border:1px solid #BEE3CD; }
+.alert--err{ background:#FDECEC; color:#A62B2B; border:1px solid #F5C6C6; }
+
+.btn .spinner{
+  width:16px; height:16px;
+  border:2px solid rgba(10,31,68,.28);
+  border-top-color:var(--navy);
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.btn[disabled]{ opacity:.68; cursor:not-allowed; transform:none !important; }
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.site-footer{
+  background:var(--navy-3);
+  color:rgba(255,255,255,.7);
+  padding:64px 0 0;
+  font-size:.88rem;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+  gap:44px;
+  padding-bottom:46px;
+}
+.footer-brand{ display:flex; align-items:center; gap:11px; margin-bottom:18px; }
+.site-footer h4{
+  color:var(--white); font-size:.78rem; font-weight:800;
+  letter-spacing:.14em; text-transform:uppercase;
+  margin-bottom:18px;
+}
+.site-footer p{ line-height:1.75; }
+.footer-links li{ margin-bottom:10px; }
+.footer-links a{ transition:color .2s var(--ease), padding-left .2s var(--ease); }
+.footer-links a:hover{ color:var(--yellow); padding-left:5px; }
+
+.socials{ display:flex; gap:10px; margin-top:20px; }
+.socials a{
+  width:38px; height:38px; border-radius:11px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.11);
+  display:grid; place-items:center;
+  transition:background .22s var(--ease), color .22s var(--ease), transform .22s var(--ease);
+}
+.socials a:hover{ background:var(--yellow); color:var(--navy); transform:translateY(-3px); }
+.socials svg{ width:17px; height:17px; }
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding:22px 0;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; flex-wrap:wrap;
+  font-size:.8rem;
+  color:rgba(255,255,255,.48);
+}
+
+/* ==========================================================
+   FLOATING WHATSAPP
+   ========================================================== */
+.wa-float{
+  position:fixed;
+  right:20px; bottom:20px;
+  z-index:900;
+  width:56px; height:56px;
+  border-radius:50%;
+  background:#25D366;
+  color:#fff;
+  display:grid; place-items:center;
+  box-shadow:0 10px 28px rgba(37,211,102,.44);
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.wa-float:hover{ transform:scale(1.09) translateY(-3px); box-shadow:0 14px 36px rgba(37,211,102,.55); }
+.wa-float svg{ width:28px; height:28px; }
+
+/* ==========================================================
+   SCROLL REVEAL
+   ========================================================== */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+}
+.reveal.in{ opacity:1; transform:none; }
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width:1024px){
+  .hero-grid{ grid-template-columns:1fr; gap:44px; }
+  .train-grid{ grid-template-columns:1fr; gap:40px; }
+  .about-grid{ grid-template-columns:1fr; gap:40px; }
+  .contact-grid{ grid-template-columns:1fr; gap:40px; }
+  .grid-3{ grid-template-columns:repeat(2,1fr); }
+  .footer-grid{ grid-template-columns:1fr 1fr; gap:36px; }
+}
+
+@media (max-width:860px){
+  .nav-links{
+    position:fixed;
+    top:var(--nav-h); left:0; right:0;
+    background:var(--navy-3);
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:14px 22px 26px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    box-shadow:0 22px 44px rgba(0,0,0,.42);
+    transform:translateY(-130%);
+    opacity:0;
+    visibility:hidden;
+    transition:transform .34s var(--ease), opacity .28s var(--ease), visibility .28s;
+    max-height:calc(100vh - var(--nav-h));
+    overflow-y:auto;
+  }
+  .nav-links.open{ transform:translateY(0); opacity:1; visibility:visible; }
+  .nav-links a{
+    padding:14px 12px;
+    border-radius:10px;
+    font-size:1rem;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav-links a:last-child{ border-bottom:0; }
+  .burger{ display:grid; }
+  .nav-cta .btn{ display:none; }
+
+  .section{ padding:66px 0; }
+  .hero{ padding:70px 0 66px; }
+  .strip-grid{ grid-template-columns:repeat(2,1fr); }
+  .strip-item:nth-child(2){ border-right:0; }
+  .strip-item:nth-child(1),
+  .strip-item:nth-child(2){ border-bottom:1px solid rgba(10,31,68,.12); }
+
+  .price-card.featured{ transform:none; }
+  .price-card.featured:hover{ transform:translateY(-6px); }
+}
+
+@media (max-width:700px){
+  .grid-3{ grid-template-columns:1fr; }
+  .price-grid{ grid-template-columns:1fr; }
+  .addons-list{ grid-template-columns:1fr; }
+  .addons-list .addon:nth-child(odd){ border-right:0; }
+  .addon:nth-last-child(2){ border-bottom:1px solid var(--grey-100); }
+  .footer-grid{ grid-template-columns:1fr; }
+  .field-row{ grid-template-columns:1fr; }
+  .form-card{ padding:28px 22px; }
+  .panel{ padding:28px 22px; }
+  .about-visual{ padding:30px 24px; }
+  .footer-bottom{ flex-direction:column; text-align:center; }
+  .hero-actions .btn{ flex:1 1 100%; }
+}
+
+@media (max-width:420px){
+  .wrap{ padding:0 16px; }
+  .nav{ padding:0 16px; }
+  .hero h1{ font-size:1.72rem; }
+  .price{ font-size:1.75rem; }
+  .wa-float{ width:50px; height:50px; right:14px; bottom:14px; }
+  .wa-float svg{ width:24px; height:24px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .reveal{ opacity:1; transform:none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav">
+    <a href="#home" class="brand" aria-label="SHADS-ICTECH home">
+      <span class="brand-mark">S</span>
+      <span>
+        <span class="brand-text">SHADS<span>-ICTECH</span></span>
+        <span class="brand-sub">Kampala · Uganda</span>
+      </span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#training" class="nav-link">Training</a></li>
+      <li><a href="#pricing" class="nav-link">Pricing</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn--primary btn--sm">Get a Free Quote</a>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+
+      <div class="hero-copy">
+        <span class="eyebrow">Your Trusted ICT Partner</span>
+
+        <h1>Technology that works.<br><em>Skills that pay.</em></h1>
+
+        <p class="lead">
+          SHADS-ICTECH delivers practical ICT training, IT consultation, genuine software
+          installation and website development for students, schools and small businesses
+          across Kampala.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn--primary">
+            Get a Free Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#services" class="btn btn--ghost">View Services</a>
+        </div>
+
+        <ul class="hero-trust">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Genuine licensed software only
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            We come to you
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Free first consultation
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-card">
+        <h3>What we do</h3>
+        <p>Six core services, one trusted partner.</p>
+
+        <div class="service-mini">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </span>
+          <span><strong>ICT &amp; IT Training</strong><small>Computer basics · MS Office · Internet</small></span>
+        </div>
+
+        <div class="service-mini">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
+          </span>
+          <span><strong>IT Consultation</strong><small>Needs assessment · digital strategy</small></span>
+        </div>
+
+        <div class="service-mini">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+          </span>
+          <span><strong>Software Installation</strong><small>Windows · Office · Adobe · Antivirus</small></span>
+        </div>
+
+        <div class="service-mini">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"/></svg>
+          </span>
+          <span><strong>Website Development</strong><small>Business · school · portfolio sites</small></span>
+        </div>
+
+        <div class="service-mini">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg>
+          </span>
+          <span><strong>Repair &amp; Maintenance</strong><small>Troubleshooting · cleanup · support</small></span>
+        </div>
+
+        <div class="service-mini">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+          </span>
+          <span><strong>Networking &amp; Security</strong><small>Setup · antivirus · data backup</small></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STRIP ============================ -->
+<div class="strip">
+  <div class="strip-grid">
+    <div class="strip-item"><strong>6</strong><span>Core Services</span></div>
+    <div class="strip-item"><strong>16</strong><span>Sessions per Course</span></div>
+    <div class="strip-item"><strong>100%</strong><span>Genuine Software</span></div>
+    <div class="strip-item"><strong>Kampala</strong><span>On-site &amp; Remote</span></div>
+  </div>
+</div>
+
+<!-- ============================ SERVICES ============================ -->
+<section class="section section--grey" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Services</span>
+      <h2>Everything you need to run, learn and grow with technology</h2>
+      <p>From teaching a beginner how to use a mouse, to building a website for your business — SHADS-ICTECH covers the full journey.</p>
+    </div>
+
+    <div class="grid-3">
+
+      <article class="card reveal">
+        <span class="ico-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </span>
+        <h3>ICT / IT Training</h3>
+        <p>Hands-on, beginner-friendly training delivered at your home, office or school.</p>
+        <ul>
+          <li>Computer basics &amp; file management</li>
+          <li>Microsoft Word, Excel, PowerPoint</li>
+          <li>Internet, email &amp; Google Drive</li>
+          <li>CV writing &amp; job application skills</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
+        </span>
+        <h3>IT Consultation</h3>
+        <p>Practical advice to help your organisation choose the right technology — without overspending.</p>
+        <ul>
+          <li>ICT needs assessment</li>
+          <li>Equipment &amp; software recommendations</li>
+          <li>Digital strategy for small business</li>
+          <li>Data backup &amp; security planning</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+        </span>
+        <h3>Software Installation</h3>
+        <p>Clean, correct installations with drivers, updates and setup done properly.</p>
+        <ul>
+          <li>Windows 10 / 11 installation</li>
+          <li>Microsoft Office suite</li>
+          <li>Adobe &amp; creative tools (licensed)</li>
+          <li>Antivirus, drivers &amp; utilities</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"/></svg>
+        </span>
+        <h3>Website Development</h3>
+        <p>Fast, mobile-friendly websites that help customers find you online.</p>
+        <ul>
+          <li>Business &amp; company websites</li>
+          <li>School &amp; church websites</li>
+          <li>Personal portfolios &amp; CV sites</li>
+          <li>Domain, hosting &amp; email setup</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg>
+        </span>
+        <h3>Repair &amp; Maintenance</h3>
+        <p>Diagnosis and repair for slow, infected or failing computers.</p>
+        <ul>
+          <li>Virus &amp; malware removal</li>
+          <li>System speed optimisation</li>
+          <li>Hardware diagnosis &amp; upgrades</li>
+          <li>Monthly maintenance contracts</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <h3>Networking &amp; Security</h3>
+        <p>Reliable connections and safe data for offices, labs and cyber cafés.</p>
+        <ul>
+          <li>Wi-Fi &amp; LAN setup</li>
+          <li>Router &amp; printer configuration</li>
+          <li>Antivirus deployment</li>
+          <li>Backup &amp; password policy setup</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TRAINING ============================ -->
+<section class="section" id="training">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Training Programme</span>
+      <h2>Computer &amp; Microsoft Office Essentials</h2>
+      <p>An 8-week, 16-session course designed for complete beginners — students, job seekers, office assistants and business owners.</p>
+    </div>
+
+    <div class="train-grid">
+
+      <div class="modules">
+        <div class="module reveal">
+          <span class="num">01</span>
+          <div>
+            <h4>Computer Basics</h4>
+            <p>Parts of a computer, keyboard &amp; mouse, files, folders and flash drive storage.</p>
+            <span class="sess">Sessions 1–3</span>
+          </div>
+        </div>
+
+        <div class="module reveal">
+          <span class="num">02</span>
+          <div>
+            <h4>Microsoft Word</h4>
+            <p>Typing, formatting, tables, images, spell-check and printing professional documents.</p>
+            <span class="sess">Sessions 4–6</span>
+          </div>
+        </div>
+
+        <div class="module reveal">
+          <span class="num">03</span>
+          <div>
+            <h4>Microsoft Excel</h4>
+            <p>Rows, columns, formulas (SUM, AVERAGE), charts, sorting, filtering and reports.</p>
+            <span class="sess">Sessions 7–9</span>
+          </div>
+        </div>
+
+        <div class="module reveal">
+          <span class="num">04</span>
+          <div>
+            <h4>Microsoft PowerPoint</h4>
+            <p>Slide design, themes, images, transitions and confident presentation delivery.</p>
+            <span class="sess">Sessions 10–11</span>
+          </div>
+        </div>
+
+        <div class="module reveal">
+          <span class="num">05</span>
+          <div>
+            <h4>Internet, Email &amp; Digital Skills</h4>
+            <p>Browsing, searching, Google Drive, Gmail, attachments and professional communication.</p>
+            <span class="sess">Sessions 12–13</span>
+          </div>
+        </div>
+
+        <div class="module reveal">
+          <span class="num">06</span>
+          <div>
+            <h4>Computer Security &amp; Maintenance</h4>
+            <p>Strong passwords, phishing awareness, antivirus scans and data backup habits.</p>
+            <span class="sess">Session 14</span>
+          </div>
+        </div>
+
+        <div class="module reveal">
+          <span class="num">07</span>
+          <div>
+            <h4>Career &amp; Business Skills</h4>
+            <p>Build a professional CV, write a cover letter, and sit the final practical assessment.</p>
+            <span class="sess">Sessions 15–16</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel reveal">
+        <h3>Course at a glance</h3>
+        <p>Flexible scheduling — weekdays, evenings or weekends. We train at your location or online.</p>
+
+        <ul class="panel-list">
+          <li><span>Duration</span><strong>8 Weeks</strong></li>
+          <li><span>Total sessions</span><strong>16</strong></li>
+          <li><span>Session length</span><strong>1.5 – 2 Hours</strong></li>
+          <li><span>Class size</span><strong>1 – 10 Learners</strong></li>
+          <li><span>Prerequisite</span><strong>None</strong></li>
+          <li><span>Mode</span><strong>On-site / Online</strong></li>
+          <li><span>Certificate</span><strong>Yes, on passing</strong></li>
+        </ul>
+
+        <a href="#contact" class="btn btn--primary btn--block" style="margin-top:26px;">
+          Enrol or Book a Demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PRICING ============================ -->
+<section class="section section--grey" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>Clear, honest prices — no hidden charges</h2>
+      <p>Training packages below. Group and corporate rates available on request.</p>
+    </div>
+
+    <div class="price-grid">
+
+      <article class="price-card reveal">
+        <h3>Single Session</h3>
+        <p class="desc">Perfect for a quick fix or a trial lesson.</p>
+        <div class="price">15,000<small>UGX per session</small></div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 2 hours of training</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Any single topic</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> On-site or online</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Practice files included</li>
+        </ul>
+        <a href="#contact" class="btn btn--outline btn--block">Book a Session</a>
+      </article>
+
+      <article class="price-card featured reveal">
+        <span class="badge">Most Popular</span>
+        <h3>Full Course</h3>
+        <p class="desc">The complete beginner-to-confident programme.</p>
+        <div class="price">300,000<small>UGX per learner</small></div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> All 16 sessions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Word, Excel &amp; PowerPoint</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> CV &amp; job application skills</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Final assessment</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Certificate of completion</li>
+        </ul>
+        <a href="#contact" class="btn btn--primary btn--block">Enrol Now</a>
+      </article>
+
+      <article class="price-card reveal">
+        <h3>Business Package</h3>
+        <p class="desc">For organisations that need ongoing ICT support.</p>
+        <div class="price">From 250,000<small>UGX · quoted per project</small></div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Website development</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Staff ICT training</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Monthly maintenance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority support</li>
+        </ul>
+        <a href="#contact" class="btn btn--outline btn--block">Request a Quote</a>
+      </article>
+
+    </div>
+
+    <div class="addons reveal">
+      <div class="addons-head">
+        <h3>Individual service rates</h3>
+        <p>Standalone jobs — no package required.</p>
+      </div>
+      <div class="addons-list">
+        <div class="addon"><span>Windows installation (per machine)</span><strong>30,000 UGX</strong></div>
+        <div class="addon"><span>Microsoft Office installation</span><strong>25,000 UGX</strong></div>
+        <div class="addon"><span>Virus removal &amp; system cleanup</span><strong>30,000 UGX</strong></div>
+        <div class="addon"><span>Adobe software installation</span><strong>40,000 UGX</strong></div>
+        <div class="addon"><span>IT consultation (per hour)</span><strong>40,000 UGX</strong></div>
+        <div class="addon"><span>Business website (3–5 pages)</span><strong>From 250,000 UGX</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+
+      <div class="about-text reveal">
+        <span class="eyebrow">About SHADS-ICTECH</span>
+        <h2>Built in Kampala, for Kampala</h2>
+        <p>
+          SHADS-ICTECH was founded by <strong>Ssebagerek Shadrack</strong> with one goal:
+          make quality ICT services affordable and accessible to everyday Ugandans —
+          students, shop owners, schools and small organisations.
+        </p>
+        <p>
+          We are a mobile-first service. Instead of asking you to come to us, we come to
+          your home, office or school with the tools and the patience to get the job done
+          properly.
+        </p>
+
+        <div class="value-list">
+          <div class="value">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+            </span>
+            <div>
+              <strong>Integrity first</strong>
+              <p>Genuine licensed software only — we never install pirated copies.</p>
+            </div>
+          </div>
+
+          <div class="value">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </span>
+            <div>
+              <strong>On time, every time</strong>
+              <p>We respect your schedule and deliver when we say we will.</p>
+            </div>
+          </div>
+
+          <div class="value">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+            </span>
+            <div>
+              <strong>Teach, don't just fix</strong>
+              <p>We explain what went wrong so you don't pay for the same problem twice.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="about-visual reveal">
+        <h3>Why clients choose us</h3>
+        <ul class="check-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Free first consultation and needs assessment</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>We travel to your home, office or school</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Written quotations before any work begins</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Warranty on installations and repairs</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Your data is handled with confidentiality</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Flexible payment: Mobile Money or cash</span>
+          </li>
+        </ul>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="section section--navy" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <div class="contact-info reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Tell us what you need — we'll quote you free</h2>
+        <p>Fill in the form and we'll get back to you within 24 hours. Or reach us directly using the details below.</p>
+
+        <div class="contact-items">
+          <a class="contact-item" href="tel:+256700000000">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+            </span>
+            <span><small>Call or WhatsApp</small><strong>+256 700 000 000</strong></span>
+          </a>
+
+          <a class="contact-item" href="mailto:info@shads-ictech.com">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            </span>
+            <span><small>Email</small><strong>info@shads-ictech.com</strong></span>
+          </a>
+
+          <div class="contact-item">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span><small>Location</small><strong>Kampala, Uganda</strong></span>
+          </div>
+
+          <div class="contact-item">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </span>
+            <span><small>Working Hours</small><strong>Mon – Sat · 8:00am – 7:00pm</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card reveal">
+        <h3>Request a Free Quote</h3>
+        <p>All fields marked <span style="color:#D64545">*</span> are required.</p>
+
+        <div class="alert alert--ok" id="alertOk" role="status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span id="alertOkText">Thank you! Your request has been received.</span>
+        </div>
+
+        <div class="alert alert--err" id="alertErr" role="alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5h.01"/></svg>
+          <span id="alertErrText">Something went wrong. Please try again.</span>
+        </div>
+
+        <form id="leadForm" novalidate>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="full_name" placeholder="e.g. Sarah Nakato" required maxlength="120" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. 0700 000 000" required maxlength="25" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address <span style="color:var(--grey-400);font-weight:600">(optional)</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" maxlength="160" autocomplete="email" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="service">Service Needed <span class="req">*</span></label>
+              <select id="service" name="service" required>
+                <option value="">— Select a service —</option>
+                <option>ICT / IT Training</option>
+                <option>IT Consultation</option>
+                <option>Software Installation</option>
+                <option>Website Development</option>
+                <option>Computer Repair &amp; Maintenance</option>
+                <option>Networking &amp; Security</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="budget">Estimated Budget</label>
+              <select id="budget" name="budget">
+                <option value="">— Optional —</option>
+                <option>Under 50,000 UGX</option>
+                <option>50,000 – 150,000 UGX</option>
+                <option>150,000 – 300,000 UGX</option>
+                <option>300,000 – 600,000 UGX</option>
+                <option>Above 600,000 UGX</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Tell us more <span class="req">*</span></label>
+            <textarea id="message" name="message" placeholder="Describe what you need, your location in Kampala, and your preferred timing…" required maxlength="1500"></textarea>
+          </div>
+
+          <!-- Honeypot: hidden from humans, bots fill it in -->
+          <div class="hp" aria-hidden="true">
+            <label for="company_website">Do not fill this</label>
+            <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button type="submit" class="btn btn--navy btn--block" id="submitBtn">
+            <span id="btnLabel">Send Request</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" id="btnIcon"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <p class="form-note">
+            By submitting this form you agree that SHADS-ICTECH may contact you about your enquiry.
+            We never share your details with third parties.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-brand">
+          <span class="brand-mark">S</span>
+          <span>
+            <span class="brand-text">SHADS<span>-ICTECH</span></span>
+            <span class="brand-sub">Kampala · Uganda</span>
+          </span>
+        </div>
+        <p>Practical ICT training, consultation, software installation and website development for students, schools and small businesses across Kampala.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8 1 .8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.03-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9Z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13a2.5 2.5 0 1 1-2.5-2.5c.2 0 .4 0 .5.1V9.5a5.5 5.5 0 1 0 5 5.5V8.6a6.3 6.3 0 0 0 3.5 1.1V6.6a3.6 3.6 0 0 1-3.5-3.6V2Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#training">Training</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services">ICT / IT Training</a></li>
+          <li><a href="#services">IT Consultation</a></li>
+          <li><a href="#services">Software Installation</a></li>
+          <li><a href="#services">Website Development</a></li>
+          <li><a href="#services">Repair &amp; Maintenance</a></li>
+          <li><a href="#services">Networking &amp; Security</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+256700000000">+256 700 000 000</a></li>
+          <li><a href="mailto:info@shads-ictech.com">info@shads-ictech.com</a></li>
+          <li>Kampala, Uganda</li>
+          <li>Mon – Sat · 8:00am – 7:00pm</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span id="year">2026</span> SHADS-ICTECH. All rights reserved.</span>
+      <span>Founded by Ssebagerek Shadrack · Kampala, Uganda</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================ WHATSAPP FLOAT ============================ -->
+<a class="wa-float" href="https://wa.me/256700000000?text=Hello%20SHADS-ICTECH%2C%20I%20need%20ICT%20help." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8 1 .8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg>
+</a>
+
+<!-- ============================ SUPABASE JS ============================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+/* ==========================================================
+   SHADS-ICTECH — Front-end Logic
+   Supabase credentials are already configured below.
+   ========================================================== */
+const SUPABASE_URL      = "https://dbhlbifxejffhlkudlxr.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRiaGxiaWZ4ZWpmZmhsa3VkbHhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5MjI5MDMsImV4cCI6MjEwNzQ5ODkwM30.N8X5niR1rxeIa8lJnJCdjJM2il21bRlUTvMoaGh8LoM";
+
+let supabaseClient = null;
+try {
+  supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: { persistSession: false }
+  });
+} catch (err) {
+  console.warn("Supabase not configured yet:", err);
+}
+
+/* ---------- Year ---------- */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------- Sticky header shadow ---------- */
+const header = document.getElementById("siteHeader");
+const onScrollHeader = () => header.classList.toggle("scrolled", window.scrollY > 12);
+window.addEventListener("scroll", onScrollHeader, { passive: true });
+onScrollHeader();
+
+/* ---------- Mobile menu ---------- */
+const burger   = document.getElementById("burger");
+const navLinks = document.getElementById("navLinks");
+
+function closeMenu() {
+  navLinks.classList.remove("open");
+  burger.classList.remove("open");
+  burger.setAttribute("aria-expanded", "false");
+}
+
+burger.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("open");
+  burger.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", String(open));
+});
+
+navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+document.addEventListener("click", e => {
+  if (!navLinks.contains(e.target) && !burger.contains(e.target)) closeMenu();
+});
+
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+
+/* ---------- Active nav link on scroll ---------- */
+const sections = [...document.querySelectorAll("section[id]")];
+const links    = [...document.querySelectorAll(".nav-link")];
+
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const id = entry.target.id;
+    links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
+  });
+}, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+
+sections.forEach(s => spy.observe(s));
+
+/* ---------- Scroll reveal ---------- */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.transitionDelay = (i * 70) + "ms";
+      entry.target.classList.add("in");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: "0px 0px -50px 0px" });
+
+document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+/* ---------- Contact form ---------- */
+const form       = document.getElementById("leadForm");
+const submitBtn  = document.getElementById("submitBtn");
+const btnLabel   = document.getElementById("btnLabel");
+const btnIcon    = document.getElementById("btnIcon");
+const alertOk    = document.getElementById("alertOk");
+const alertErr   = document.getElementById("alertErr");
+const alertOkText  = document.getElementById("alertOkText");
+const alertErrText = document.getElementById("alertErrText");
+
+function hideAlerts() {
+  alertOk.classList.remove("show");
+  alertErr.classList.remove("show");
+}
+
+function showError(msg) {
+  alertErrText.textContent = msg;
+  alertErr.classList.add("show");
+  alertErr.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function setLoading(state) {
+  submitBtn.disabled = state;
+  if (state) {
+    btnLabel.textContent = "Sending…";
+    btnIcon.replaceWith(Object.assign(document.createElement("span"), { className: "spinner" }));
+  } else {
+    btnLabel.textContent = "Send Request";
+    const spinner = submitBtn.querySelector(".spinner");
+    if (spinner) {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("fill", "none");
+      svg.setAttribute("stroke", "currentColor");
+      svg.setAttribute("stroke-width", "2.2");
+      svg.setAttribute("stroke-linecap", "round");
+      svg.setAttribute("stroke-linejoin", "round");
+      svg.id = "btnIcon";
+      svg.innerHTML = '<path d="M5 12h14M13 6l6 6-6 6"/>';
+      spinner.replaceWith(svg);
+    }
+  }
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  hideAlerts();
+
+  /* Honeypot check */
+  if (form.company_website.value.trim() !== "") {
+    form.reset();
+    return;
+  }
+
+  /* Collect + trim */
+  const payload = {
+    full_name: form.full_name.value.trim(),
+    phone:     form.phone.value.trim(),
+    email:     form.email.value.trim() || null,
+    service:   form.service.value.trim(),
+    budget:    form.budget.value.trim() || null,
+    message:   form.message.value.trim()
+  };
+
+  /* Validate */
+  if (!payload.full_name || payload.full_name.length < 2) {
+    return showError("Please enter your full name.");
+  }
+  if (!payload.phone || payload.phone.replace(/\D/g, "").length < 9) {
+    return showError("Please enter a valid phone number (at least 9 digits).");
+  }
+  if (payload.email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(payload.email)) {
+    return showError("Please enter a valid email address, or leave it blank.");
+  }
+  if (!payload.service) {
+    return showError("Please select the service you need.");
+  }
+  if (!payload.message || payload.message.length < 10) {
+    return showError("Please describe what you need (at least 10 characters).");
+  }
+
+  if (!supabaseClient) {
+    return showError("The form is not yet connected to the server. Please call or WhatsApp us instead.");
+  }
+
+  setLoading(true);
+
+  try {
+    const { error } = await supabaseClient
+      .from("leads")
+      .insert([payload]);
+
+    if (error) throw error;
+
+    alertOkText.textContent =
+      "Thank you, " + payload.full_name.split(" ")[0] +
+      "! Your request has been received. We'll contact you within 24 hours.";
+    alertOk.classList.add("show");
+    alertOk.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    form.reset();
+  } catch (err) {
+    console.error("Lead submission failed:", err);
+    showError("We couldn't send your request right now. Please try again, or call/WhatsApp us directly.");
+  } finally {
+    setLoading(false);
+  }
+});
+</script>
+
+</body>
+</html>
