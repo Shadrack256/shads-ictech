@@ -5,22 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SHADS-ICTECH | ICT Training, Software &amp; Web Development in Kampala</title>
 <meta name="description" content="SHADS-ICTECH provides practical ICT training, IT consultation, software installation and website development for students, schools and small businesses in Kampala, Uganda." />
-<meta name="theme-color" content="#0A1F44" />
+<meta name="theme-color" content="#111111" />
+
+<!-- ==================== FAVICON / SITE ICON ==================== -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 
 <style>
 /* ==========================================================
    SHADS-ICTECH — Design System
-   Palette: Navy Blue / Yellow / Grey
+   Palette: Black / Brand Colors (Yellow, Green, Blue, Red)
    ========================================================== */
 :root{
-  --navy:      #0A1F44;
-  --navy-2:    #12305E;
-  --navy-3:    #061530;
-  --navy-soft: #1B3A6B;
+  --dark:      #111111;
+  --dark-2:    #222222;
+  --dark-3:    #050505;
 
   --yellow:    #FFC629;
   --yellow-2:  #FFD75E;
   --yellow-3:  #E0A800;
+
+  --brand-green: #00A651;
+  --brand-red:   #FF3B30;
+  --brand-blue:  #00AEEF;
 
   --grey-50:   #F7F8FA;
   --grey-100:  #EFF1F5;
@@ -35,9 +42,9 @@
   --radius:    14px;
   --radius-lg: 22px;
 
-  --shadow-sm: 0 2px 8px rgba(10,31,68,.06);
-  --shadow:    0 10px 30px rgba(10,31,68,.10);
-  --shadow-lg: 0 24px 60px rgba(10,31,68,.20);
+  --shadow-sm: 0 2px 8px rgba(17,17,17,.06);
+  --shadow:    0 10px 30px rgba(17,17,17,.10);
+  --shadow-lg: 0 24px 60px rgba(17,17,17,.20);
 
   --max: 1180px;
   --nav-h: 74px;
@@ -55,7 +62,7 @@ html{
 
 body{
   font-family:"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  color:var(--navy);
+  color:var(--dark);
   background:var(--white);
   line-height:1.7;
   font-size:16px;
@@ -73,7 +80,7 @@ ul{ list-style:none; }
 .section{ padding:88px 0; }
 .section--tight{ padding:64px 0; }
 .section--grey{ background:var(--grey-50); }
-.section--navy{ background:var(--navy); color:var(--white); }
+.section--dark{ background:var(--dark); color:var(--white); }
 
 .section-head{ max-width:720px; margin:0 auto 52px; text-align:center; }
 .section-head h2{
@@ -84,7 +91,7 @@ ul{ list-style:none; }
   margin-bottom:14px;
 }
 .section-head p{ color:var(--grey-500); font-size:1.03rem; }
-.section--navy .section-head p{ color:rgba(255,255,255,.72); }
+.section--dark .section-head p{ color:rgba(255,255,255,.72); }
 
 .eyebrow{
   display:inline-flex; align-items:center; gap:8px;
@@ -96,7 +103,7 @@ ul{ list-style:none; }
   padding:6px 14px; border-radius:999px;
   margin-bottom:18px;
 }
-.section--navy .eyebrow{ color:var(--yellow); }
+.section--dark .eyebrow{ color:var(--yellow); }
 
 /* ---------- Buttons ---------- */
 .btn{
@@ -113,17 +120,17 @@ ul{ list-style:none; }
 .btn:hover{ transform:translateY(-2px); }
 .btn:active{ transform:translateY(0); }
 
-.btn--primary{ background:var(--yellow); color:var(--navy); box-shadow:0 8px 22px rgba(255,198,41,.34); }
+.btn--primary{ background:var(--yellow); color:var(--dark); box-shadow:0 8px 22px rgba(255,198,41,.34); }
 .btn--primary:hover{ background:var(--yellow-2); box-shadow:0 12px 30px rgba(255,198,41,.45); }
 
-.btn--navy{ background:var(--navy); color:var(--white); box-shadow:var(--shadow-sm); }
-.btn--navy:hover{ background:var(--navy-2); box-shadow:var(--shadow); }
+.btn--dark{ background:var(--dark); color:var(--white); box-shadow:var(--shadow-sm); }
+.btn--dark:hover{ background:var(--dark-2); box-shadow:var(--shadow); }
 
 .btn--ghost{ background:transparent; color:var(--white); border-color:rgba(255,255,255,.32); }
 .btn--ghost:hover{ border-color:var(--yellow); color:var(--yellow); }
 
-.btn--outline{ background:transparent; color:var(--navy); border-color:var(--grey-200); }
-.btn--outline:hover{ border-color:var(--navy); background:var(--navy); color:var(--white); }
+.btn--outline{ background:transparent; color:var(--dark); border-color:var(--grey-200); }
+.btn--outline:hover{ border-color:var(--dark); background:var(--dark); color:var(--white); }
 
 .btn--sm{ padding:10px 20px; font-size:.85rem; }
 .btn--block{ width:100%; }
@@ -134,13 +141,13 @@ ul{ list-style:none; }
    ========================================================== */
 .site-header{
   position:sticky; top:0; z-index:1000;
-  background:rgba(10,31,68,.96);
+  background:rgba(17,17,17,.96);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(255,255,255,.08);
   transition:box-shadow .3s var(--ease);
 }
-.site-header.scrolled{ box-shadow:0 6px 26px rgba(6,21,48,.4); }
+.site-header.scrolled{ box-shadow:0 6px 26px rgba(0,0,0,.4); }
 
 .nav{
   max-width:var(--max); margin:0 auto;
@@ -149,26 +156,17 @@ ul{ list-style:none; }
   display:flex; align-items:center; justify-content:space-between; gap:18px;
 }
 
+/* ---------- Brand Logo ---------- */
 .brand{ display:flex; align-items:center; gap:11px; }
-.brand-mark{
-  width:40px; height:40px; flex:none;
-  border-radius:11px;
-  background:linear-gradient(135deg, var(--yellow) 0%, var(--yellow-3) 100%);
-  color:var(--navy);
-  display:grid; place-items:center;
-  font-weight:900; font-size:1.18rem;
-  letter-spacing:-.04em;
-  box-shadow:0 6px 16px rgba(255,198,41,.32);
-}
-.brand-text{
-  font-weight:900; font-size:1.06rem; letter-spacing:-.02em;
-  color:var(--white); line-height:1.1;
-}
-.brand-text span{ color:var(--yellow); }
-.brand-sub{
-  display:block; font-size:.6rem; font-weight:600;
-  letter-spacing:.2em; text-transform:uppercase;
-  color:var(--grey-400); margin-top:2px;
+
+.brand-logo{
+  height: 50px;
+  width: auto;
+  display: block;
+  /* 👇 UNCOMMENT these three lines if your logo.png has a white background */
+  /* background: #fff; */
+  /* border-radius: 8px; */
+  /* padding: 4px 8px; */
 }
 
 .nav-links{ display:flex; align-items:center; gap:4px; }
@@ -179,7 +177,7 @@ ul{ list-style:none; }
   transition:color .2s var(--ease), background .2s var(--ease);
 }
 .nav-links a:hover{ color:var(--yellow); background:rgba(255,255,255,.07); }
-.nav-links a.active{ color:var(--navy); background:var(--yellow); }
+.nav-links a.active{ color:var(--dark); background:var(--yellow); }
 
 .nav-cta{ display:flex; align-items:center; gap:10px; }
 
@@ -216,7 +214,7 @@ ul{ list-style:none; }
    ========================================================== */
 .hero{
   position:relative;
-  background:var(--navy);
+  background:var(--dark);
   color:var(--white);
   padding:96px 0 92px;
   overflow:hidden;
@@ -224,9 +222,11 @@ ul{ list-style:none; }
 .hero::before{
   content:"";
   position:absolute; inset:0;
+  /* Subtle glowing colors extracted from the logo ovals */
   background:
-    radial-gradient(820px 420px at 88% -8%, rgba(255,198,41,.18), transparent 62%),
-    radial-gradient(680px 420px at -6% 108%, rgba(27,58,107,.85), transparent 60%);
+    radial-gradient(820px 420px at 88% -8%, rgba(0,174,239,.18), transparent 62%),
+    radial-gradient(680px 420px at -6% 108%, rgba(0,166,81,.18), transparent 60%),
+    radial-gradient(500px 300px at 50% 50%, rgba(255,198,41,.12), transparent 70%);
   pointer-events:none;
 }
 .hero::after{
@@ -324,7 +324,7 @@ ul{ list-style:none; }
 .service-mini small{ font-size:.77rem; color:rgba(255,255,255,.55); }
 
 /* ==========================================================
-   LOGO / STATS STRIP
+   STRIP
    ========================================================== */
 .strip{
   background:var(--yellow);
@@ -337,18 +337,18 @@ ul{ list-style:none; }
 .strip-item{
   padding:26px 20px;
   text-align:center;
-  border-right:1px solid rgba(10,31,68,.12);
+  border-right:1px solid rgba(17,17,17,.12);
 }
 .strip-item:last-child{ border-right:0; }
 .strip-item strong{
   display:block;
   font-size:1.5rem; font-weight:900;
-  color:var(--navy); letter-spacing:-.03em; line-height:1.1;
+  color:var(--dark); letter-spacing:-.03em; line-height:1.1;
 }
 .strip-item span{
   font-size:.75rem; font-weight:700;
   text-transform:uppercase; letter-spacing:.12em;
-  color:rgba(10,31,68,.66);
+  color:rgba(17,17,17,.66);
 }
 
 /* ==========================================================
@@ -372,7 +372,7 @@ ul{ list-style:none; }
 .card::before{
   content:"";
   position:absolute; top:0; left:0; right:0; height:4px;
-  background:linear-gradient(90deg, var(--yellow), var(--yellow-3));
+  background:linear-gradient(90deg, var(--brand-green), var(--brand-blue), var(--yellow), var(--brand-red));
   transform:scaleX(0); transform-origin:left;
   transition:transform .35s var(--ease);
 }
@@ -386,13 +386,13 @@ ul{ list-style:none; }
 .card .ico-lg{
   width:56px; height:56px;
   border-radius:16px;
-  background:var(--navy);
+  background:var(--dark);
   color:var(--yellow);
   display:grid; place-items:center;
   margin-bottom:20px;
   transition:background .28s var(--ease), color .28s var(--ease), transform .28s var(--ease);
 }
-.card:hover .ico-lg{ background:var(--yellow); color:var(--navy); transform:rotate(-6deg) scale(1.05); }
+.card:hover .ico-lg{ background:var(--yellow); color:var(--dark); transform:rotate(-6deg) scale(1.05); }
 .card .ico-lg svg{ width:26px; height:26px; }
 
 .card h3{
@@ -410,8 +410,8 @@ ul{ list-style:none; }
   content:"";
   position:absolute; left:0; top:9px;
   width:8px; height:8px; border-radius:50%;
-  background:var(--yellow);
-  box-shadow:0 0 0 3px rgba(255,198,41,.2);
+  background:var(--brand-green); /* Green from the logo */
+  box-shadow:0 0 0 3px rgba(0,166,81,.2);
 }
 
 /* ==========================================================
@@ -437,19 +437,19 @@ ul{ list-style:none; }
 .module:hover{
   transform:translateX(5px);
   box-shadow:var(--shadow);
-  border-left-color:var(--navy);
+  border-left-color:var(--dark);
 }
 .module .num{
   flex:none;
   width:34px; height:34px;
   border-radius:10px;
   background:var(--grey-100);
-  color:var(--navy);
+  color:var(--dark);
   display:grid; place-items:center;
   font-weight:900; font-size:.82rem;
   transition:background .25s var(--ease), color .25s var(--ease);
 }
-.module:hover .num{ background:var(--navy); color:var(--yellow); }
+.module:hover .num{ background:var(--dark); color:var(--yellow); }
 .module h4{ font-size:.96rem; font-weight:800; margin-bottom:3px; }
 .module p{ font-size:.85rem; color:var(--grey-500); line-height:1.55; }
 .module .sess{
@@ -464,7 +464,7 @@ ul{ list-style:none; }
 
 /* Info panel */
 .panel{
-  background:var(--navy);
+  background:var(--dark);
   color:var(--white);
   border-radius:var(--radius-lg);
   padding:34px 30px;
@@ -476,7 +476,7 @@ ul{ list-style:none; }
   content:"";
   position:absolute; right:-70px; bottom:-70px;
   width:230px; height:230px; border-radius:50%;
-  background:radial-gradient(circle, rgba(255,198,41,.22), transparent 68%);
+  background:radial-gradient(circle, rgba(0,174,239,.2), transparent 68%);
 }
 .panel h3{
   font-size:1.2rem; font-weight:800; margin-bottom:8px;
@@ -519,9 +519,9 @@ ul{ list-style:none; }
 .price-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow-lg); }
 
 .price-card.featured{
-  background:var(--navy);
+  background:var(--dark);
   color:var(--white);
-  border-color:var(--navy);
+  border-color:var(--dark);
   box-shadow:var(--shadow-lg);
   transform:scale(1.035);
 }
@@ -529,12 +529,13 @@ ul{ list-style:none; }
 
 .badge{
   position:absolute; top:-13px; left:50%; transform:translateX(-50%);
-  background:var(--yellow); color:var(--navy);
+  background:var(--brand-green); /* Green from the logo */
+  color:var(--white);
   font-size:.68rem; font-weight:900;
   letter-spacing:.12em; text-transform:uppercase;
   padding:6px 16px; border-radius:999px;
   white-space:nowrap;
-  box-shadow:0 6px 16px rgba(255,198,41,.4);
+  box-shadow:0 6px 16px rgba(0,166,81,.4);
 }
 
 .price-card h3{ font-size:1rem; font-weight:800; margin-bottom:6px; }
@@ -544,7 +545,7 @@ ul{ list-style:none; }
 .price{
   font-size:2.05rem; font-weight:900;
   letter-spacing:-.035em; line-height:1;
-  color:var(--navy);
+  color:var(--dark);
 }
 .price-card.featured .price{ color:var(--yellow); }
 .price small{
@@ -567,7 +568,7 @@ ul{ list-style:none; }
   color:var(--grey-700);
 }
 .price-card.featured .price-feats li{ color:rgba(255,255,255,.82); }
-.price-feats svg{ width:16px; height:16px; flex:none; margin-top:4px; color:var(--yellow-3); }
+.price-feats svg{ width:16px; height:16px; flex:none; margin-top:4px; color:var(--brand-green); }
 .price-card.featured .price-feats svg{ color:var(--yellow); }
 
 /* Add-ons table */
@@ -595,7 +596,7 @@ ul{ list-style:none; }
 .addons-list .addon:nth-child(odd){ border-right:1px solid var(--grey-100); }
 .addon:last-child, .addon:nth-last-child(2){ border-bottom:0; }
 .addon span{ color:var(--grey-700); }
-.addon strong{ color:var(--navy); font-weight:800; white-space:nowrap; }
+.addon strong{ color:var(--dark); font-weight:800; white-space:nowrap; }
 
 /* ==========================================================
    ABOUT
@@ -623,7 +624,7 @@ ul{ list-style:none; }
 .value:hover{ box-shadow:var(--shadow); transform:translateY(-3px); }
 .value .ico{
   width:36px; height:36px; flex:none; border-radius:10px;
-  background:rgba(255,198,41,.16); color:var(--yellow-3);
+  background:rgba(0,166,81,.15); color:var(--brand-green);
   display:grid; place-items:center;
 }
 .value .ico svg{ width:18px; height:18px; }
@@ -631,7 +632,7 @@ ul{ list-style:none; }
 .value p{ font-size:.83rem; color:var(--grey-500); margin:0; }
 
 .about-visual{
-  background:var(--navy);
+  background:var(--dark);
   border-radius:var(--radius-lg);
   padding:38px 32px;
   color:var(--white);
@@ -651,7 +652,7 @@ ul{ list-style:none; }
   font-size:.9rem; margin-bottom:14px;
   color:rgba(255,255,255,.84);
 }
-.check-list svg{ width:18px; height:18px; flex:none; margin-top:4px; color:var(--yellow); }
+.check-list svg{ width:18px; height:18px; flex:none; margin-top:4px; color:var(--brand-blue); }
 
 /* ==========================================================
    CONTACT
@@ -713,9 +714,9 @@ ul{ list-style:none; }
 .field label{
   display:block; font-size:.8rem; font-weight:800;
   letter-spacing:.03em; margin-bottom:7px;
-  color:var(--navy);
+  color:var(--dark);
 }
-.field label .req{ color:#D64545; }
+.field label .req{ color:var(--brand-red); }
 .field input,
 .field select,
 .field textarea{
@@ -732,9 +733,9 @@ ul{ list-style:none; }
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
-  border-color:var(--navy);
+  border-color:var(--dark);
   background:var(--white);
-  box-shadow:0 0 0 4px rgba(10,31,68,.09);
+  box-shadow:0 0 0 4px rgba(17,17,17,.09);
 }
 .field input::placeholder,
 .field textarea::placeholder{ color:var(--grey-400); }
@@ -765,8 +766,8 @@ ul{ list-style:none; }
 
 .btn .spinner{
   width:16px; height:16px;
-  border:2px solid rgba(10,31,68,.28);
-  border-top-color:var(--navy);
+  border:2px solid rgba(17,17,17,.28);
+  border-top-color:var(--dark);
   border-radius:50%;
   animation:spin .7s linear infinite;
 }
@@ -777,7 +778,7 @@ ul{ list-style:none; }
    FOOTER
    ========================================================== */
 .site-footer{
-  background:var(--navy-3);
+  background:var(--dark-3);
   color:rgba(255,255,255,.7);
   padding:64px 0 0;
   font-size:.88rem;
@@ -807,7 +808,7 @@ ul{ list-style:none; }
   display:grid; place-items:center;
   transition:background .22s var(--ease), color .22s var(--ease), transform .22s var(--ease);
 }
-.socials a:hover{ background:var(--yellow); color:var(--navy); transform:translateY(-3px); }
+.socials a:hover{ background:var(--yellow); color:var(--dark); transform:translateY(-3px); }
 .socials svg{ width:17px; height:17px; }
 
 .footer-bottom{
@@ -863,7 +864,7 @@ ul{ list-style:none; }
   .nav-links{
     position:fixed;
     top:var(--nav-h); left:0; right:0;
-    background:var(--navy-3);
+    background:var(--dark-3);
     flex-direction:column;
     align-items:stretch;
     gap:0;
@@ -893,7 +894,7 @@ ul{ list-style:none; }
   .strip-grid{ grid-template-columns:repeat(2,1fr); }
   .strip-item:nth-child(2){ border-right:0; }
   .strip-item:nth-child(1),
-  .strip-item:nth-child(2){ border-bottom:1px solid rgba(10,31,68,.12); }
+  .strip-item:nth-child(2){ border-bottom:1px solid rgba(17,17,17,.12); }
 
   .price-card.featured{ transform:none; }
   .price-card.featured:hover{ transform:translateY(-6px); }
@@ -912,6 +913,7 @@ ul{ list-style:none; }
   .about-visual{ padding:30px 24px; }
   .footer-bottom{ flex-direction:column; text-align:center; }
   .hero-actions .btn{ flex:1 1 100%; }
+  .brand-logo{ height: 42px; }
 }
 
 @media (max-width:420px){
@@ -921,6 +923,7 @@ ul{ list-style:none; }
   .price{ font-size:1.75rem; }
   .wa-float{ width:50px; height:50px; right:14px; bottom:14px; }
   .wa-float svg{ width:24px; height:24px; }
+  .brand-logo{ height: 38px; }
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -940,11 +943,7 @@ ul{ list-style:none; }
 <header class="site-header" id="siteHeader">
   <nav class="nav">
     <a href="#home" class="brand" aria-label="SHADS-ICTECH home">
-      <span class="brand-mark">S</span>
-      <span>
-        <span class="brand-text">SHADS<span>-ICTECH</span></span>
-        <span class="brand-sub">Kampala · Uganda</span>
-      </span>
+      <img src="logo.png" alt="SHADS-ICTECH Logo" class="brand-logo">
     </a>
 
     <ul class="nav-links" id="navLinks">
@@ -1425,7 +1424,7 @@ ul{ list-style:none; }
 </section>
 
 <!-- ============================ CONTACT ============================ -->
-<section class="section section--navy" id="contact">
+<section class="section section--dark" id="contact">
   <div class="wrap">
     <div class="contact-grid">
 
@@ -1435,18 +1434,18 @@ ul{ list-style:none; }
         <p>Fill in the form and we'll get back to you within 24 hours. Or reach us directly using the details below.</p>
 
         <div class="contact-items">
-          <a class="contact-item" href="tel:+256700000000">
+          <a class="contact-item" href="tel:+256705765614">
             <span class="ico">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
             </span>
-            <span><small>Call or WhatsApp</small><strong>+256 700 000 000</strong></span>
+            <span><small>Call or WhatsApp</small><strong>+256 705 765 614</strong></span>
           </a>
 
-          <a class="contact-item" href="mailto:info@shads-ictech.com">
+          <a class="contact-item" href="mailto:shadrackssebagereka2002@gmail.com">
             <span class="ico">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
             </span>
-            <span><small>Email</small><strong>info@shads-ictech.com</strong></span>
+            <span><small>Email</small><strong>shadrackssebagereka2002@gmail.com</strong></span>
           </a>
 
           <div class="contact-item">
@@ -1467,7 +1466,7 @@ ul{ list-style:none; }
 
       <div class="form-card reveal">
         <h3>Request a Free Quote</h3>
-        <p>All fields marked <span style="color:#D64545">*</span> are required.</p>
+        <p>All fields marked <span style="color:var(--brand-red)">*</span> are required.</p>
 
         <div class="alert alert--ok" id="alertOk" role="status">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -1536,7 +1535,7 @@ ul{ list-style:none; }
             <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off" />
           </div>
 
-          <button type="submit" class="btn btn--navy btn--block" id="submitBtn">
+          <button type="submit" class="btn btn--dark btn--block" id="submitBtn">
             <span id="btnLabel">Send Request</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" id="btnIcon"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
@@ -1561,11 +1560,7 @@ ul{ list-style:none; }
 
       <div>
         <div class="footer-brand">
-          <span class="brand-mark">S</span>
-          <span>
-            <span class="brand-text">SHADS<span>-ICTECH</span></span>
-            <span class="brand-sub">Kampala · Uganda</span>
-          </span>
+          <img src="logo.png" alt="SHADS-ICTECH" class="brand-logo" style="height:48px;">
         </div>
         <p>Practical ICT training, consultation, software installation and website development for students, schools and small businesses across Kampala.</p>
         <div class="socials">
@@ -1611,8 +1606,8 @@ ul{ list-style:none; }
       <div>
         <h4>Contact</h4>
         <ul class="footer-links">
-          <li><a href="tel:+256700000000">+256 700 000 000</a></li>
-          <li><a href="mailto:info@shads-ictech.com">info@shads-ictech.com</a></li>
+          <li><a href="tel:+256705765614">+256 705 765 614</a></li>
+          <li><a href="mailto:shadrackssebagereka2002@gmail.com">shadrackssebagereka2002@gmail.com</a></li>
           <li>Kampala, Uganda</li>
           <li>Mon – Sat · 8:00am – 7:00pm</li>
         </ul>
@@ -1628,7 +1623,7 @@ ul{ list-style:none; }
 </footer>
 
 <!-- ============================ WHATSAPP FLOAT ============================ -->
-<a class="wa-float" href="https://wa.me/256700000000?text=Hello%20SHADS-ICTECH%2C%20I%20need%20ICT%20help." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<a class="wa-float" href="https://wa.me/256705765614?text=Hello%20SHADS-ICTECH%2C%20I%20need%20ICT%20help." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8 1 .8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg>
 </a>
 
@@ -1638,7 +1633,6 @@ ul{ list-style:none; }
 <script>
 /* ==========================================================
    SHADS-ICTECH — Front-end Logic
-   Supabase credentials are already configured below.
    ========================================================== */
 const SUPABASE_URL      = "https://dbhlbifxejffhlkudlxr.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRiaGxiaWZ4ZWpmZmhsa3VkbHhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5MjI5MDMsImV4cCI6MjEwNzQ5ODkwM30.N8X5niR1rxeIa8lJnJCdjJM2il21bRlUTvMoaGh8LoM";
