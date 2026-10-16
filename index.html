@@ -156,33 +156,32 @@ ul{ list-style:none; }
   display:flex; align-items:center; justify-content:space-between; gap:18px;
 }
 
-/* ---------- Brand (Text Logo) ---------- */
+/* ---------- Brand (Logo Image + White Text) ---------- */
 .brand{ display:flex; align-items:center; gap:11px; }
 
-.brand-mark{
-  width:40px; height:40px; flex:none;
-  border-radius:11px;
-  background:linear-gradient(135deg, var(--yellow) 0%, var(--yellow-3) 100%);
-  color:var(--dark);
-  display:grid; place-items:center;
-  font-weight:900; font-size:1.18rem;
-  letter-spacing:-.04em;
-  box-shadow:0 6px 16px rgba(255,198,41,.32);
+/* ✅ Replaces the old yellow "S" square */
+.brand-logo-mark{
+  height: 42px;
+  width: auto;
+  display: block;
+  flex: none;
+  /* If your logo.png has a white/light background, this keeps it tidy */
+  border-radius: 8px;
 }
 
 .brand-text{
   font-weight:900; font-size:1.06rem; letter-spacing:-.02em;
-  color:var(--white);          /* ✅ Header main text is white */
+  color:var(--white);
   line-height:1.1;
   display:block;
 }
-.brand-text span{ color:var(--white); }   /* ✅ Accent part also white */
+.brand-text span{ color:var(--white); }
 
 .brand-sub{
   display:block; font-size:.6rem; font-weight:700;
   letter-spacing:.2em; text-transform:uppercase;
-  color:var(--white);          /* ✅ Subtitle is white too */
-  opacity:.85;                 /* slightly softer so it doesn't overpower */
+  color:var(--white);
+  opacity:.85;
   margin-top:2px;
 }
 
@@ -879,7 +878,7 @@ ul{ list-style:none; }
   .wa-float{ width:50px; height:50px; right:14px; bottom:14px; }
   .wa-float svg{ width:24px; height:24px; }
   .brand-text{ font-size:.98rem; }
-  .brand-mark{ width:36px; height:36px; font-size:1.05rem; }
+  .brand-logo-mark{ height:36px; }
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -899,7 +898,8 @@ ul{ list-style:none; }
 <header class="site-header" id="siteHeader">
   <nav class="nav">
     <a href="#home" class="brand" aria-label="SHADS-ICTECH home">
-      <span class="brand-mark">S</span>
+      <!-- ✅ Logo image replaces the styled "S" -->
+      <img src="logo.png" alt="SHADS-ICTECH Logo" class="brand-logo-mark">
       <span>
         <span class="brand-text">SHADS<span>-ICTECH</span></span>
         <span class="brand-sub">Kampala · Uganda</span>
@@ -1519,7 +1519,7 @@ ul{ list-style:none; }
 
       <div>
         <div class="footer-brand">
-          <span class="brand-mark">S</span>
+          <img src="logo.png" alt="SHADS-ICTECH Logo" class="brand-logo-mark" style="height:44px;">
           <span>
             <span class="brand-text">SHADS<span>-ICTECH</span></span>
             <span class="brand-sub">Kampala · Uganda</span>
