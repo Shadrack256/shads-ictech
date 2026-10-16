@@ -13,11 +13,12 @@
 <style>
 :root{
   --dark:#111111; --dark-2:#222222; --dark-3:#050505;
-  --yellow:#FFC629; --yellow-3:#E0A800;
+  --yellow:#FFC629; --yellow-2:#FFD75E; --yellow-3:#E0A800;
   --brand-green: #00A651;
   --brand-red:   #FF3B30;
   --brand-blue:  #00AEEF;
   --grey-50:#F7F8FA; --grey-100:#EFF1F5; --grey-200:#DDE1E9;
+  --grey-400:#A8B0BF;
   --grey-500:#7A8497; --grey-700:#3E4859; --white:#fff;
   --radius:12px;
   --shadow:0 8px 28px rgba(17,17,17,.10);
@@ -54,8 +55,8 @@ button,input,select{font:inherit;color:inherit}
   padding:40px 34px;
   box-shadow:var(--shadow-lg);
 }
-.login-logo{ display:flex; flex-direction:column; align-items:center; gap:16px; margin-bottom:26px; text-align:center; }
-.login-logo img{ height:60px; width:auto; }
+.login-logo{ display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:26px; text-align:center; }
+.login-logo img{ height:64px; width:auto; }
 .login-logo small{
   display:block;font-size:.62rem;letter-spacing:.2em;
   text-transform:uppercase;color:var(--grey-500);font-weight:700;
@@ -90,7 +91,7 @@ button,input,select{font:inherit;color:inherit}
 .btn:hover{ transform:translateY(-2px); }
 .btn:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
 .btn--primary{ background:var(--yellow); color:var(--dark); box-shadow:0 8px 20px rgba(255,198,41,.34); }
-.btn--primary:hover{ background:#FFD75E; }
+.btn--primary:hover{ background:var(--yellow-2); }
 .btn--navy{ background:var(--dark); color:var(--white); }
 .btn--navy:hover{ background:var(--dark-2); }
 .btn--ghost{ background:transparent; border-color:var(--grey-200); color:var(--dark); }
@@ -105,6 +106,23 @@ button,input,select{font:inherit;color:inherit}
 .msg.show{ display:block; }
 .msg--err{ background:#FDECEC; color:#A62B2B; border:1px solid #F5C6C6; }
 
+/* ✅ Back to Website link (login screen) */
+.back-home{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  margin-top:22px;
+  padding-top:20px;
+  border-top:1px solid var(--grey-100);
+  font-size:.83rem; font-weight:700;
+  color:var(--grey-500);
+  transition:color .2s;
+}
+.back-home:hover{ color:var(--dark); }
+.back-home svg{
+  width:15px; height:15px;
+  transition:transform .2s;
+}
+.back-home:hover svg{ transform:translateX(-3px); }
+
 /* ---------- DASHBOARD ---------- */
 .dash{ display:none; min-height:100vh; flex-direction:column; }
 .dash.show{ display:flex; }
@@ -116,11 +134,30 @@ button,input,select{font:inherit;color:inherit}
   gap:16px; position:sticky; top:0; z-index:50;
   box-shadow:0 4px 18px rgba(0,0,0,.32);
 }
-.topbar .brand{ display:flex; align-items:center; gap:14px; }
-.topbar .brand img{ height:40px; width:auto; display:block; }
+.topbar .brand{ display:flex; align-items:center; gap:12px; }
+.topbar .brand img{ height:40px; width:auto; display:block; border-radius:8px; }
+.topbar strong{ font-size:1rem; font-weight:900; letter-spacing:-.02em; color:var(--white); }
+.topbar strong span{ color:var(--white); }
 .topbar small{ display:block; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.55); font-weight:700; }
 .topbar-actions{ display:flex; align-items:center; gap:12px; }
 .topbar .who{ font-size:.82rem; color:rgba(255,255,255,.7); }
+
+/* ✅ Small "View Site" button in the topbar */
+.topbar .view-site{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:8px 14px; border-radius:999px;
+  font-size:.78rem; font-weight:800;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--white);
+  transition:background .2s, border-color .2s, color .2s;
+}
+.topbar .view-site:hover{
+  background:rgba(255,198,41,.15);
+  border-color:rgba(255,198,41,.5);
+  color:var(--yellow);
+}
+.topbar .view-site svg{ width:14px; height:14px; }
 
 .container{ max-width:1240px; width:100%; margin:0 auto; padding:32px 22px 60px; flex:1; }
 
@@ -211,6 +248,8 @@ td .msg-body{ max-width:340px; color:var(--grey-700); font-size:.85rem; }
 @media (max-width:480px){
   .stats{ grid-template-columns:1fr; }
   .container{ padding:22px 14px 50px; }
+  .topbar .view-site span{ display:none; }
+  .topbar .view-site{ padding:8px 10px; }
 }
 </style>
 </head>
@@ -240,6 +279,12 @@ td .msg-body{ max-width:340px; color:var(--grey-700); font-size:.85rem; }
       </div>
       <button type="submit" class="btn btn--primary btn--block" id="loginBtn">Sign In</button>
     </form>
+
+    <!-- ✅ Back to Website link -->
+    <a href="index.html" class="back-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Back to Website
+    </a>
   </div>
 </div>
 
@@ -249,9 +294,17 @@ td .msg-body{ max-width:340px; color:var(--grey-700); font-size:.85rem; }
   <header class="topbar">
     <div class="brand">
       <img src="logo.png" alt="SHADS-ICTECH Logo">
-      <small>Admin Panel</small>
+      <span>
+        <strong>SHADS<span>-ICTECH</span></strong>
+        <small>Admin Panel</small>
+      </span>
     </div>
     <div class="topbar-actions">
+      <!-- ✅ Quick "View Site" button in topbar -->
+      <a href="index.html" class="view-site">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+        <span>View Site</span>
+      </a>
       <span class="who" id="whoami"></span>
       <button class="btn btn--primary btn--sm" id="logoutBtn">Sign Out</button>
     </div>
